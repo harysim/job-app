@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>تعديل الطلب</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+    <ion-item>
+      <ion-label position="floating">الإسم الكامل</ion-label>
+      <ion-input formControlName="fullName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">رقم الهاتف</ion-label>
+      <ion-input formControlName="phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">البريد الإلكتروني</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">الجنس</ion-label>
+      <ion-select formControlName="gender">
+        <ion-select-option value="male">ذكر</ion-select-option>
+        <ion-select-option value="female">أنثى</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">نوع الوظيفة</ion-label>
+      <ion-select formControlName="jobType">
+        <ion-select-option value="full_time">دوام كامل</ion-select-option>
+        <ion-select-option value="part_time">دوام جزئي</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">حفظ التغييرات</ion-button>
+  </form>
+</ion-content>

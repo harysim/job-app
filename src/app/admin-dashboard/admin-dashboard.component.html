@@ -1,0 +1,75 @@
+<ion-menu side="start" menuId="admin-dashboard-menu" contentId="admin-dashboard-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>القائمة</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/form"> <!-- Link to the main form -->
+        <ion-label>نموذج التسجيل</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="admin-dashboard-menu" style="color: #007bff;"></ion-menu-button> <!-- Blue menu icon -->
+    </ion-buttons>
+    <ion-title style="text-align: center;">
+      <img src="assets/logo.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="admin-dashboard-content">
+  <div class="container" [ngClass]="mode"> <!-- Apply mode class here -->
+    <h2>لوحة التحكم</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>خيارات</th> <!-- Moved to the first position -->
+          <th>الملفات الإضافية</th> <!-- Moved to the second position -->
+          <th>السيرة الذاتية</th> <!-- Moved to the third position -->
+          <th>نوع الوظيفة</th> <!-- Moved to the fourth position -->
+          <th>الجنس</th> <!-- Moved to the fifth position -->
+          <th>البريد الإلكتروني</th> <!-- Moved to the sixth position -->
+          <th>رقم الهاتف</th> <!-- Moved to the seventh position -->
+          <th>الإسم الكامل</th> <!-- Moved to the last position -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let application of applications">
+          <td class="action-buttons"> <!-- Moved to the first position -->
+            <button (click)="edit(application)" class="btn-edit">تعديل</button>
+            <button (click)="confirmDelete(application)" class="btn-delete">حذف</button>
+          </td>
+          <td> <!-- Moved to the second position -->
+            <div *ngIf="application.additional_files.length > 0">
+              <a *ngFor="let file of application.additional_files" [href]="apiUrl + '/download/' + file" class="btn-download">
+                تحميل الملف
+              </a>
+            </div>
+            <span *ngIf="application.additional_files.length === 0">لا يوجد</span>
+          </td>
+          <td> <!-- Moved to the third position -->
+            <a *ngIf="application.cv !== 'لا يوجد'" [href]="apiUrl + '/download/' + application.cv" class="btn-download">
+              تحميل السيرة الذاتية
+            </a>
+            <span *ngIf="application.cv === 'لا يوجد'">لا يوجد</span>
+          </td>
+          <td>{{ translateJobType(application.job_type) }}</td> <!-- Use translation function -->
+          <td>{{ translateGender(application.gender) }}</td> <!-- Use translation function -->
+          <td>{{ application.email }}</td> <!-- Moved to the sixth position -->
+          <td>{{ application.phone }}</td> <!-- Moved to the seventh position -->
+          <td>{{ application.full_name }}</td> <!-- Moved to the last position -->
+        </tr>
+      </tbody>
+    </table>
+    <div class="btn-logout">
+      <button (click)="logout()">تسجيل الخروج</button>
+    </div>
+  </div>
+</ion-content>

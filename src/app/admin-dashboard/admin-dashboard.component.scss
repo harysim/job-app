@@ -1,0 +1,140 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Amiri', serif;
+  direction: rtl;
+}
+
+.container {
+  margin-top: 50px;
+  overflow-x: auto;
+  padding: 0 10px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #343a40;
+  font-weight: bold;
+  font-size: 1.8rem; /* Increased font size for the header */
+}
+
+table {
+  background-color: white;
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  min-width: 600px;
+  font-size: 1.1rem; /* Further increased base font size for the table */
+}
+
+th, td {
+  padding: 14px; /* Increased padding for better spacing */
+  text-align: right;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 1.2rem; /* Increased font size for table content */
+  font-weight: bold; /* Made the text bold */
+  line-height: 1.5; /* Added line height for better readability */
+}
+
+th {
+  background-color: #343a40;
+  color: white;
+  font-size: 1.3rem; /* Further increased font size for table headers */
+  line-height: 1.5;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn-download {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.1rem; /* Increased font size for download links */
+}
+
+.btn-download:hover {
+  text-decoration: underline;
+}
+
+.btn-logout {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.btn-logout button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 24px; /* Increased padding for the button */
+  border-radius: 5px;
+  font-size: 1.2rem; /* Increased font size for the logout button */
+}
+
+.btn-logout button:hover {
+  background-color: #c82333;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px; /* Slightly increased gap between buttons */
+}
+
+.btn-edit, .btn-delete {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 16px; /* Increased padding for the buttons */
+  border-radius: 5px;
+  font-size: 1rem; /* Increased font size for buttons */
+  min-width: 80px; /* Increased minimum width */
+  text-align: center;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+    font-size: 1rem; /* Slightly reduced font size for smaller screens */
+  }
+
+  th, td {
+    padding: 10px; /* Adjusted padding for smaller screens */
+  }
+
+  .btn-edit, .btn-delete {
+    padding: 8px;
+    font-size: 0.95rem; /* Adjusted font size for smaller screens */
+    min-width: 70px;
+  }
+}
+
+/* MD Mode Styles */
+.md .btn-edit, .md .btn-delete {
+  background-color: #007bff;
+}
+
+.md .btn-delete {
+  background-color: #ff5722;
+}
+
+/* iOS Mode Styles */
+.ios .btn-edit, .ios .btn-delete {
+  background-color: #34c759;
+}
+
+.ios .btn-delete {
+  background-color: #ff3b30;
+}

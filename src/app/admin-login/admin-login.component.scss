@@ -1,0 +1,51 @@
+body {
+  background: #00589F;
+  background: -webkit-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
+  background: -moz-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
+  background: -ms-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
+  background: -o-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
+  background: linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
+  color: white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  direction: rtl; /* Set the direction to right-to-left */
+  text-align: right; /* Align text to the right */
+}
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+  width: 50%;
+  height: 50%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+ion-item {
+  --padding-start: 0;
+}
+
+#admin-login-content {
+  background: linear-gradient(135deg, #e0e0e0, #cfcfcf); /* Subtle gradient */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+

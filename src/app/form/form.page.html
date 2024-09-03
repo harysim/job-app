@@ -1,0 +1,134 @@
+<ion-menu side="start" menuId="first" contentId="main-content" style="--width: 250px;">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>القائمة</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/admin-login">
+        <ion-label>لوحة التحكم</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: #007bff;"></ion-menu-button> <!-- Menu icon colored blue -->
+    </ion-buttons>
+    <ion-title style="text-align: center;"> <!-- Center the logo -->
+      <img src="assets/logo.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content" style="background-image: url('assets/cool-background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh;">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="8" offset-md="2">
+        <!-- Container with a distinct background -->
+        <div style="background-color: #f8f9fa; padding: 30px; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);">
+          <form [formGroup]="form" class="form-horizontal" role="form" style="background-color: white; padding: 20px; border-radius: 10px;">
+            <h2 class="text-center" style="margin-bottom: 20px; font-size: 24px; color: blue; font-weight: bold; font-family: 'Amiri', serif;">نموذج التسجيل</h2>
+
+            <div class="form-group">
+              <label for="firstName" class="col-sm-3 control-label">الاسم الكامل</label>
+              <div class="col-sm-9">
+                <input type="text" id="firstName" formControlName="firstName" placeholder="أدخل الإسم باللغة العربية" class="form-control" autofocus>
+                <div *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched" class="text-danger">
+                  الاسم الكامل مطلوب ويجب أن يحتوي على حروف عربية فقط.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber" class="col-sm-3 control-label">رقم الهاتف</label>
+              <div class="col-sm-9">
+                <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="أدخل رقم هاتف صحيح" class="form-control">
+                <div *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched" class="text-danger">
+                  رقم الهاتف مطلوب ويجب أن يكون مكونًا من 10 أرقام ويبدأ بـ 05.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="col-sm-3 control-label">البريد الإلكتروني</label>
+              <div class="col-sm-9">
+                <input type="email" id="email" formControlName="email" placeholder="البريد الإلكتروني" class="form-control">
+                <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">
+                  الرجاء إدخال بريد إلكتروني صالح.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="gender" class="col-sm-3 control-label">الجنس</label>
+              <div class="col-sm-9">
+                <select id="gender" formControlName="gender" class="form-control">
+                  <option value="male">ذكر</option>
+                  <option value="female">أنثى</option>
+                </select>
+                <div *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched" class="text-danger">
+                  الرجاء اختيار الجنس.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="jobType" class="col-sm-3 control-label">نوع الوظيفة المطلوبة</label>
+              <div class="col-sm-9">
+                <select id="jobType" formControlName="jobType" class="form-control">
+                  <option value="fullTime">دوام كامل</option>
+                  <option value="partTime">دوام جزئي</option>
+                  <option value="remote">عن بعد</option>
+                </select>
+                <div *ngIf="form.get('jobType')?.invalid && form.get('jobType')?.touched" class="text-danger">
+                  الرجاء اختيار نوع الوظيفة.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cv" class="col-sm-3 control-label">ارفق سيرتك الذاتية <span style="color: red;">*</span></label>
+              <div class="col-sm-9">
+                <input type="file" id="cv" (change)="onFileChange($event, 'cv')" class="form-control" required>
+                <div *ngIf="form.get('cv')?.invalid && form.get('cv')?.touched" class="text-danger">
+                  السيرة الذاتية مطلوبة ويجب أن تكون من نوع PDF أو DOC أو DOCX.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="additionalFiles" class="col-sm-3 control-label">ملفات إضافية (اختياري)</label>
+              <div class="col-sm-9">
+                <input type="file" id="additionalFiles" (change)="onFileChange($event, 'additionalFiles')" class="form-control" multiple>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12 text-center">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" formControlName="terms"> أوافق على
+                    <a href="#" (click)="openTermsModal($event)">شروط الخدمة</a>
+                  </label>
+                  <div *ngIf="form.get('terms')?.invalid && form.get('terms')?.touched" class="text-danger">
+                    يجب الموافقة على شروط الخدمة لإكمال التسجيل.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12 text-center">
+                <button type="button" (click)="submitForm()" class="btn btn-primary btn-block" [disabled]="form.invalid" style="font-size: 18px; padding: 10px;">التسجيل</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

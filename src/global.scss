@@ -35,3 +35,29 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Ensure that Amiri font is applied globally */
+body, ion-content, ion-menu, ion-title, ion-item {
+  font-family: 'Amiri', serif;
+}
+
+/* Increase the font size and adjust other styling for the menu */
+ion-menu {
+  font-size: 18px; /* Increase the font size */
+}
+
+ion-title {
+  font-size: 20px; /* Adjust the title font size */
+  font-weight: bold; /* Make the title bold */
+}
+
+ion-item {
+  font-size: 18px; /* Adjust the menu item font size */
+}
+
+/* Optionally adjust the size of the menu icon */
+ion-menu-button {
+  font-size: 24px; /* Adjust the menu icon size */
+}
+
+

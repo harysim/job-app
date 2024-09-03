@@ -1,0 +1,46 @@
+<ion-menu side="start" menuId="admin-login-menu" contentId="admin-login-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>القائمة</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/form"> <!-- Link to the main form -->
+        <ion-label>نموذج التسجيل</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="admin-login-menu" style="color: #007bff;"></ion-menu-button> <!-- Blue menu icon -->
+    </ion-buttons>
+    <ion-title style="text-align: center;">
+      <img src="assets/logo.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="admin-login-content">
+  <div class="Absolute-Center is-Responsive">
+    <h2 class="text-center">لوحة التحكم</h2>
+    <form (ngSubmit)="submitForm()" id="loginForm">
+      <ion-item>
+        <ion-label position="floating" style="font-weight: bold; text-align: right;">:اسم المستخدم</ion-label> <!-- Bold text and right alignment -->
+        <ion-input type="text" [(ngModel)]="username" name="username" required style="text-align: right;"></ion-input> <!-- Right alignment for input -->
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" style="font-weight: bold; text-align: right;">:كلمة المرور</ion-label> <!-- Bold text and right alignment -->
+        <ion-input type="password" [(ngModel)]="password" name="password" required style="text-align: right;"></ion-input> <!-- Right alignment for input -->
+      </ion-item>
+
+      <div class="form-group" style="text-align: center;">
+        <ion-button expand="block" type="submit" style="font-size: 18px; font-weight: bold; padding: 10px;">تسجيل الدخول</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
