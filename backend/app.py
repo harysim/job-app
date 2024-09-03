@@ -5,7 +5,8 @@ from werkzeug.utils import secure_filename
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
-app = Flask(__name__)
+# Initialize the Flask application with the static folder configured
+app = Flask(__name__, static_folder='www', static_url_path='/')
 app.secret_key = 'Man010@@02024&&'
 bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
@@ -149,5 +150,12 @@ def logout():
     session.pop('admin', None)
     return jsonify({'message': 'تم تسجيل الخروج بنجاح!'}), 200
 
+# Serve the Angular frontend
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    return app.send_static_file('index.html')
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
