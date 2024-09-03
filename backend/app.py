@@ -14,13 +14,13 @@ UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Connect to PostgreSQL database
+# Use environment variables for database connection
 conn = psycopg2.connect(
-    dbname="medicationsFinder",
-    user="postgres",
-    password="12345678K",
-    host="localhost",
-    port="5432"
+    dbname=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    host=os.getenv("DB_HOST"),
+    port=os.getenv("DB_PORT")
 )
 cursor = conn.cursor()
 
