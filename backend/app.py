@@ -156,6 +156,4 @@ def logout():
 def serve(path):
     return app.send_static_file('index.html')
 
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+# The app.run() block is removed since Gunicorn will be used to run the app in production.
