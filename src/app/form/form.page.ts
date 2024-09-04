@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { TermsOfServiceModalComponent } from '../terms-of-service-modal/terms-of-service-modal.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { environment } from '../../environments/environment'; // Import environment
 
 @Component({
   selector: 'app-form',
@@ -65,7 +66,7 @@ export class FormPage {
         }
       }
 
-      this.http.post('http://localhost:5000/api/submit', formData).subscribe(
+      this.http.post(`${environment.apiUrl}/submit`, formData).subscribe(
         (response) => {
           console.log('Form submitted successfully:', response);
           alert('Application submitted successfully!');

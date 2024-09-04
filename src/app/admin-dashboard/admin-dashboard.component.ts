@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminLoginService } from '../admin-login/admin-login.service';
 import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment'; // Import environment
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class AdminDashboardComponent implements OnInit {
   applications: any[] = [];
   mode: string;
-  apiUrl: string = 'http://localhost:5000/api';
+  apiUrl: string = environment.apiUrl; // Use the environment variable
 
   constructor(
     private adminLoginService: AdminLoginService,
