@@ -18,7 +18,16 @@ h2 {
   margin-bottom: 30px;
   color: #343a40;
   font-weight: bold;
-  font-size: 1.8rem; /* Increased font size for the header */
+  font-size: 1.8rem;
+}
+
+/* MD and iOS-specific heading sizes */
+.md h2 {
+  font-size: 1.8rem; /* Standard size */
+}
+
+.ios h2 {
+  font-size: 2rem; /* Slightly larger for iOS */
 }
 
 table {
@@ -28,22 +37,22 @@ table {
   border-collapse: collapse;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   min-width: 600px;
-  font-size: 1.1rem; /* Further increased base font size for the table */
+  font-size: 1.1rem;
 }
 
 th, td {
-  padding: 14px; /* Increased padding for better spacing */
+  padding: 14px;
   text-align: right;
   border-bottom: 1px solid #dee2e6;
-  font-size: 1.2rem; /* Increased font size for table content */
-  font-weight: bold; /* Made the text bold */
-  line-height: 1.5; /* Added line height for better readability */
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.5;
 }
 
 th {
   background-color: #343a40;
   color: white;
-  font-size: 1.3rem; /* Further increased font size for table headers */
+  font-size: 1.3rem;
   line-height: 1.5;
 }
 
@@ -54,7 +63,7 @@ tr:hover {
 .btn-download {
   color: #007bff;
   text-decoration: none;
-  font-size: 1.1rem; /* Increased font size for download links */
+  font-size: 1.1rem;
 }
 
 .btn-download:hover {
@@ -70,9 +79,9 @@ tr:hover {
   background-color: #dc3545;
   color: white;
   border: none;
-  padding: 12px 24px; /* Increased padding for the button */
+  padding: 12px 24px;
   border-radius: 5px;
-  font-size: 1.2rem; /* Increased font size for the logout button */
+  font-size: 1.2rem;
 }
 
 .btn-logout button:hover {
@@ -81,17 +90,17 @@ tr:hover {
 
 .action-buttons {
   display: flex;
-  gap: 12px; /* Slightly increased gap between buttons */
+  gap: 12px;
 }
 
 .btn-edit, .btn-delete {
   background-color: #28a745;
   color: white;
   border: none;
-  padding: 10px 16px; /* Increased padding for the buttons */
+  padding: 10px 16px;
   border-radius: 5px;
-  font-size: 1rem; /* Increased font size for buttons */
-  min-width: 80px; /* Increased minimum width */
+  font-size: 1rem;
+  min-width: 80px;
   text-align: center;
 }
 
@@ -110,16 +119,16 @@ tr:hover {
 @media (max-width: 768px) {
   table {
     width: 100%;
-    font-size: 1rem; /* Slightly reduced font size for smaller screens */
+    font-size: 1rem;
   }
 
   th, td {
-    padding: 10px; /* Adjusted padding for smaller screens */
+    padding: 10px;
   }
 
   .btn-edit, .btn-delete {
     padding: 8px;
-    font-size: 0.95rem; /* Adjusted font size for smaller screens */
+    font-size: 0.95rem;
     min-width: 70px;
   }
 }

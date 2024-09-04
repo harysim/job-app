@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';  // Import HttpClientModule
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';  // Correct imports
 
 // Angular Material Modules
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -40,7 +41,10 @@ import { TermsOfServiceModalComponent } from './terms-of-service-modal/terms-of-
     MatNativeDateModule, // Needed for Datepicker
     MatButtonModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }  // Correctly provide HashLocationStrategy
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
