@@ -17,6 +17,10 @@ ion-content,
 
 .container {
   margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 100px); /* Adjust height to fit the viewport minus the top margin */
 }
 
 .form-horizontal {
@@ -25,6 +29,7 @@ ion-content,
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   direction: rtl; /* Right-to-left direction for Arabic */
+  flex-grow: 1;
 }
 
 .text-center {
@@ -51,10 +56,21 @@ ion-content,
   vertical-align: middle;
 }
 
-
 .btn-block {
   width: 100%;
   text-align: center;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1000; /* Ensure the button is on top */
 }
 
 /* Make all labels bold and slightly bigger */
@@ -92,4 +108,34 @@ label {
 .modal-footer {
   border-top: 1px solid #e5e5e5; /* Add a light border at the top of the footer */
   text-align: left; /* Ensure footer buttons are left-aligned in RTL */
+}
+
+/* Ensure inputs are more accessible and spaced properly */
+input[type="text"],
+input[type="email"],
+input[type="file"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  /* Adjustments for mobile screens */
+  .container {
+    margin-top: 30px;
+    padding: 10px;
+    min-height: 100vh; /* Full height for mobile */
+  }
+
+  .btn-block {
+    font-size: 14px;
+    padding: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px); /* Full width minus padding */
+  }
 }
