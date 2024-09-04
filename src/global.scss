@@ -36,9 +36,15 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-/* Ensure that Amiri font is applied globally */
+/* Set the system font globally, with specific adjustments for iOS */
 body, ion-content, ion-menu, ion-title, ion-item {
-  font-family: 'Amiri', serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+}
+
+/* iOS Specific Styles */
+.ios body, .ios ion-content, .ios ion-menu, .ios ion-title, .ios ion-item {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+  font-size: 100%; /* Ensure consistent font sizing on iOS */
 }
 
 /* Increase the font size and adjust other styling for the menu */
@@ -59,5 +65,3 @@ ion-item {
 ion-menu-button {
   font-size: 24px; /* Adjust the menu icon size */
 }
-
-
