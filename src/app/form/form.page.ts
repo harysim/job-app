@@ -69,12 +69,12 @@ export class FormPage {
       this.http.post(`${environment.apiUrl}/submit`, formData).subscribe(
         (response) => {
           console.log('Form submitted successfully:', response);
-          alert('Application submitted successfully!');
+          alert('تم تسجيلك بنجاح');
           this.form.reset();  // Reset the form after successful submission
         },
         (error) => {
           console.error('Error submitting form:', error);
-          alert('There was an error submitting the form.');
+          alert('يوجد خطأ');
         }
       );
     }
