@@ -86,16 +86,24 @@ label {
 }
 
 .btn-block {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   padding: 12px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0; /* Remove border-radius to blend with the edges */
   font-size: 18px;
   cursor: pointer;
-  margin-top: 20px; /* Added margin to ensure it's not too close to the content */
+  z-index: 1000; /* Ensure the button stays on top */
 }
+
+.form-container {
+  padding-bottom: 60px; /* Add padding at the bottom to avoid overlap with the fixed button */
+}
+
 
 button[type="button"]:hover {
   background-color: #0056b3; /* Darken the button on hover */
