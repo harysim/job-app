@@ -91,7 +91,7 @@ export class AdminDashboardComponent implements OnInit {
     this.adminLoginService.logout().subscribe(
       (response) => {
         console.log('Logout successful', response);
-        window.location.href = '/admin-login'; // Redirect to the login page
+        this.router.navigate(['/admin-login']); // Use Angular router to navigate
       },
       (error) => {
         console.error('Logout error', error);
