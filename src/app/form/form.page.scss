@@ -13,6 +13,8 @@ ion-content,
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh; /* Ensure it covers the entire viewport */
+  display: flex;
+  flex-direction: column;
 }
 
 .form-container {
@@ -20,6 +22,7 @@ ion-content,
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
 }
 
 .form-horizontal {
@@ -30,6 +33,8 @@ ion-content,
   direction: rtl; /* Right-to-left direction for Arabic */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%; /* Ensure it covers the entire height of the container */
 }
 
 .text-center {
@@ -65,12 +70,14 @@ label {
 .checkbox {
   margin-top: 15px;
   text-align: right; /* Align checkbox text to the right */
+  display: flex;
+  justify-content: flex-end; /* Align the checkbox container to the right */
 }
 
 .checkbox label {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start; /* Ensure the text is aligned properly */
+  justify-content: flex-end; /* Ensure the text is aligned properly */
   font-weight: normal;
   white-space: nowrap; /* Keep the text and checkbox on the same line */
 }
@@ -82,12 +89,6 @@ label {
 
 .btn-block {
   width: 100%;
-  text-align: center;
-  margin-top: 20px; /* Ensure spacing between input fields and button */
-}
-
-button[type="button"] {
-  width: 100%;
   padding: 12px;
   background-color: #007bff;
   color: white;
@@ -95,6 +96,8 @@ button[type="button"] {
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
+  position: relative;
+  z-index: 1000; /* Ensure the button stays on top */
 }
 
 button[type="button"]:hover {
@@ -125,6 +128,15 @@ button[type="button"]:hover {
   .form-control {
     flex-basis: auto;
     width: 100%;
+  }
+
+  .btn-block {
+    position: static; /* Remove fixed positioning for small screens */
+    margin-top: 20px;
+  }
+
+  .checkbox label {
+    justify-content: flex-start; /* Ensure the text and checkbox stay on the same line on small screens */
   }
 }
 
