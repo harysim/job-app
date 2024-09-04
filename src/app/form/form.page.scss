@@ -26,6 +26,7 @@ ion-content,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto; /* Allow scrolling if needed */
 }
 
 .form-horizontal {
@@ -90,22 +91,30 @@ label {
 }
 
 .btn-container {
-  display: flex;
-  justify-content: center;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
   padding: 12px;
   background-color: #007bff;
   color: white;
-  border-radius: 0;
-  font-size: 18px;
-  cursor: pointer;
+  text-align: center;
   z-index: 1000; /* Ensure the button stays on top */
 }
 
-button[type="button"]:hover {
-  background-color: #0056b3; /* Darken the button on hover */
+button[type="button"] {
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  width: 100%;
 }
 
-/* Red color for the validation message */
+button[type="button"]:hover {
+  background-color: #0056b3;
+}
+
 .text-danger {
   color: red;
 }
@@ -132,7 +141,7 @@ button[type="button"]:hover {
   }
 
   .checkbox label {
-    justify-content: flex-start; /* Ensure the text and checkbox stay on the same line on small screens */
+    justify-content: flex-start;
   }
 }
 
