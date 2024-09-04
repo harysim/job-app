@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // Corrected import path
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminLoginService {
 
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = environment.apiUrl; // Use the environment variable for the API URL
 
   constructor(private http: HttpClient) { }
 
