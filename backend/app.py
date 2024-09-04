@@ -4,10 +4,14 @@ import psycopg2
 from werkzeug.utils import secure_filename
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
+from dotenv import load_dotenv
+
+# Load environment variables from a .env file (if used locally)
+load_dotenv()
 
 # Initialize the Flask application with the static folder configured
 app = Flask(__name__, static_folder='www', static_url_path='/')
-app.secret_key = 'Man010@@02024&&'
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "Man010@@02024&&")
 bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
 
@@ -17,11 +21,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Use environment variables for database connection
 conn = psycopg2.connect(
-    dbname=os.getenv("DB_NAME"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    host=os.getenv("DB_HOST"),
-    port=os.getenv("DB_PORT")
+    dbname=os.getenv("DB_NAME", "jobapp_lt8w"),
+    user=os.getenv("DB_USER", "sari"),
+    password=os.getenv("DB_PASSWORD", "Ar3Pltvr3ZVJIkT25ROwx5vI7s5LawlC"),
+    host=os.getenv("DB_HOST", "dpg-crbnihl6l47c73d7uj50-a.oregon-postgres.render.com"),
+    port=os.getenv("DB_PORT", "5432")
 )
 cursor = conn.cursor()
 
@@ -74,8 +78,8 @@ def admin_login():
     cursor.execute("SELECT * FROM admins WHERE username = %s", (username,))
     admin = cursor.fetchone()
 
-    # Compare the plain-text password directly
-    if admin and admin[2] == password:
+    # Compare the plain-text password using bcrypt
+    if admin and bcrypt.check_password_hash(admin[2], password):
         session['admin'] = admin[0]
         return jsonify({'message': 'تم تسجيل الدخول بنجاح!'}), 200
     else:
