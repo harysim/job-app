@@ -15,12 +15,11 @@ ion-content,
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow: hidden;
 }
 
 .form-container {
   background-color: #f8f9fa;
-  padding: 10px; /* Further reduced padding */
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   flex-grow: 1;
@@ -28,12 +27,12 @@ ion-content,
   flex-direction: column;
   justify-content: space-between;
   overflow-y: auto;
-  max-height: calc(100vh - 100px); /* Adjusted max height to push button up */
+  max-height: calc(100vh - 20px); /* Ensure space for header */
 }
 
 .form-horizontal {
   background-color: white;
-  padding: 10px; /* Reduced padding */
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   direction: rtl;
@@ -44,19 +43,19 @@ ion-content,
 
 .text-center {
   text-align: center;
-  margin-bottom: 20px; /* Adjusted margin */
+  margin-bottom: 20px;
 }
 
 .form-group {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-bottom: 10px; /* Reduced margin */
+  margin-bottom: 10px;
 }
 
 label {
   font-weight: bold;
-  font-size: 16px; /* Slightly reduced label size */
+  font-size: 16px;
   text-align: right;
   margin-left: 10px;
   flex-basis: 30%;
@@ -67,7 +66,7 @@ label {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px; /* Reduced font size */
+  font-size: 14px;
   text-align: right;
 }
 
@@ -92,18 +91,12 @@ label {
 }
 
 .btn-container {
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  padding: 10px; /* Reduced padding */
-  background-color: #007bff;
-  color: white;
+  margin-top: 20px;
   text-align: center;
-  z-index: 1000;
 }
 
 button[type="button"] {
-  background-color: transparent;
+  background-color: #007bff;
   color: white;
   font-size: 18px;
   border: none;
@@ -124,7 +117,7 @@ button[type="button"]:hover {
 @media (max-width: 768px) {
   .form-container {
     padding: 10px;
-    max-height: calc(100vh - 80px); /* Adjusted for mobile */
+    max-height: calc(100vh - 80px);
   }
 
   .form-group {
@@ -147,36 +140,12 @@ button[type="button"]:hover {
   }
 }
 
-/* Specific Styling for iOS Mode */
+/* iOS Specific Styles */
 .ios .form-container {
-  padding: 10px;
-  max-height: calc(100vh - 80px);
+  padding: 15px;
 }
 
-.ios button[type="button"] {
-  background-color: blue;
-}
-
-/* Specific Styling for MD Mode (Android) */
+/* Android Specific Styles */
 .md .form-container {
-  padding: 10px;
-  max-height: calc(100vh - 80px);
-}
-
-.md button[type="button"] {
-  background-color: #007bff;
-}
-
-/* Specific Styling for Desktop (Large Screens) */
-@media (min-width: 1024px) {
-  .form-container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  button[type="button"] {
-    padding: 15px;
-    font-size: 20px;
-  }
+  padding: 15px;
 }
