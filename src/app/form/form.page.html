@@ -24,7 +24,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content id="main-content" style="background-image: url('assets/cool-background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh;">
+<ion-content id="main-content" style="min-height: 100vh;">
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="8" offset-md="2">
@@ -103,14 +103,13 @@
                 </div>
               </div>
             </div>
-
-            <!-- Button container at the bottom -->
-            <div class="btn-container">
-              <button type="button" (click)="submitForm()" class="btn btn-primary btn-block" [disabled]="form.invalid">التسجيل</button>
-            </div>
           </form>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <!-- Button container at the bottom -->
+  <div class="btn-container">
+    <button type="button" (click)="submitForm()" class="btn btn-primary btn-block" [disabled]="form.invalid">التسجيل</button>
+  </div>
 </ion-content>

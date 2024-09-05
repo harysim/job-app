@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, Renderer2, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { TermsOfServiceModalComponent } from '../terms-of-service-modal/terms-of-service-modal.component';
@@ -10,10 +10,11 @@ import { environment } from '../../environments/environment'; // Import environm
   templateUrl: './form.page.html',
   styleUrls: ['./form.page.scss'],
 })
-export class FormPage {
+export class FormPage implements AfterViewInit {
   form: FormGroup;
+  isMobile = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private modalController: ModalController) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private modalController: ModalController, private renderer: Renderer2) {
     this.form = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^05\d{8}$/)]],
@@ -78,5 +79,36 @@ export class FormPage {
         }
       );
     }
+  }
+
+  ngAfterViewInit() {
+    this.ensureButtonVisibility();
+  }
+
+  ensureButtonVisibility() {
+    const btnContainer = document.querySelector('.btn-container') as HTMLElement;
+    const content = document.querySelector('#main-content') as HTMLElement;
+
+    if (btnContainer && content) {
+      const contentRect = content.getBoundingClientRect();
+      const btnRect = btnContainer.getBoundingClientRect();
+
+      // Check if the button is out of view
+      if (btnRect.bottom > contentRect.bottom) {
+        this.renderer.setStyle(content, 'paddingBottom', `${btnRect.height + 20}px`); // Add padding to bottom of content
+      } else {
+        this.renderer.setStyle(content, 'paddingBottom', `20px`);
+      }
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+onResize(event: Event) {
+  this.isMobile = window.innerWidth < 768;
+}
+
+
+  ngOnInit() {
+    this.isMobile = window.innerWidth < 768;
   }
 }
