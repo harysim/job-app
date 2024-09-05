@@ -10,7 +10,7 @@ ion-content {
 
 .form-container {
   background-color: #f8f9fa;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -44,6 +44,13 @@ label {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: 100%; /* Ensure input fields take full width */
+  box-sizing: border-box; /* Include padding and border in width */
+}
+
+input[type="file"] {
+  text-align: right; /* Align file input to the right */
+  direction: rtl; /* Ensure file input respects RTL layout */
 }
 
 .btn-container {
@@ -52,6 +59,7 @@ label {
   background-color: #007bff;
   color: white;
   text-align: center;
+  border-radius: 5px; /* Rounded corners */
 }
 
 button[type="button"] {
@@ -62,10 +70,21 @@ button[type="button"] {
   cursor: pointer;
   padding: 12px;
   width: 100%;
+  transition: background-color 0.3s ease; /* Smooth transition */
+  border-radius: 5px; /* Rounded corners */
 }
 
 button[type="button"]:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.text-danger {
+  color: red;
+}
+
+.checkbox label {
+  text-align: right;
+  width: 100%; /* Ensure checkbox label takes full width */
 }
 
 /* Media Queries for responsive design */
