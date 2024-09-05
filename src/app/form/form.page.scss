@@ -11,31 +11,32 @@ ion-content,
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensure it covers the entire viewport */
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* Force content to fill the viewport height */
+  overflow: hidden; /* Hide overflow */
 }
 
 .form-container {
   background-color: #f8f9fa;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow-y: auto;
-  max-height: calc(100vh - 20px); /* Ensure space for header */
+  overflow-y: auto; /* Allow scrolling if content exceeds viewport */
+  margin-bottom: 10px; /* Adjust margin to make room for the button */
 }
 
 .form-horizontal {
   background-color: white;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  direction: rtl;
+  direction: rtl; /* Right-to-left direction for Arabic */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -55,48 +56,54 @@ ion-content,
 
 label {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px; /* Increase label size */
   text-align: right;
   margin-left: 10px;
-  flex-basis: 30%;
+  flex-basis: 30%; /* Labels take 30% of the row width */
+  display: block;
 }
 
 .form-control {
-  flex-basis: 70%;
+  flex-basis: 70%; /* Input fields take 70% of the row width */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px;
-  text-align: right;
+  font-size: 16px;
+  text-align: right; /* Align text inside inputs to the right */
 }
 
 .checkbox {
-  margin-top: 10px;
-  text-align: right;
+  margin-top: 15px;
+  text-align: right; /* Align checkbox text to the right */
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Align the checkbox container to the right */
 }
 
 .checkbox label {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Ensure the text is aligned properly */
   font-weight: normal;
-  white-space: nowrap;
+  white-space: nowrap; /* Keep the text and checkbox on the same line */
 }
 
 .checkbox input[type="checkbox"] {
-  margin-left: 8px;
+  margin-left: 8px; /* Space between the text and checkbox */
   vertical-align: middle;
 }
 
 .btn-container {
-  margin-top: 20px;
+  margin-top: auto; /* Push the button to the bottom of the form */
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
   text-align: center;
+  z-index: 1000; /* Ensure the button stays on top */
+  border-radius: 0 0 10px 10px; /* Match the form's border-radius */
 }
 
 button[type="button"] {
-  background-color: #007bff;
+  background-color: transparent;
   color: white;
   font-size: 18px;
   border: none;
@@ -116,8 +123,8 @@ button[type="button"]:hover {
 /* Media Queries */
 @media (max-width: 768px) {
   .form-container {
-    padding: 10px;
-    max-height: calc(100vh - 80px);
+    padding: 20px;
+    margin-bottom: 20px; /* Add margin to make room for the button */
   }
 
   .form-group {
@@ -140,12 +147,12 @@ button[type="button"]:hover {
   }
 }
 
-/* iOS Specific Styles */
-.ios .form-container {
-  padding: 15px;
+/* MD Mode Styles */
+.md button[type="button"] {
+  background-color: #007bff;
 }
 
-/* Android Specific Styles */
-.md .form-container {
-  padding: 15px;
+/* iOS Mode Styles */
+.ios button[type="button"] {
+  background-color: blue;
 }
