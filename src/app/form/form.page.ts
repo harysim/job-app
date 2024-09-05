@@ -14,7 +14,12 @@ export class FormPage implements AfterViewInit {
   form: FormGroup;
   isMobile = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private modalController: ModalController, private renderer: Renderer2) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private modalController: ModalController,
+    private renderer: Renderer2
+  ) {
     this.form = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^05\d{8}$/)]],
@@ -28,7 +33,7 @@ export class FormPage implements AfterViewInit {
   }
 
   async openTermsModal(event: Event) {
-    event.preventDefault();
+    event.preventDefault();  // Prevents the link from navigating
     const modal = await this.modalController.create({
       component: TermsOfServiceModalComponent
     });
@@ -71,7 +76,7 @@ export class FormPage implements AfterViewInit {
         (response) => {
           console.log('Form submitted successfully:', response);
           alert('تم تسجيلك بنجاح');
-          this.form.reset();
+          this.form.reset();  // Reset the form after successful submission
         },
         (error) => {
           console.error('Error submitting form:', error);
@@ -82,20 +87,29 @@ export class FormPage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.adjustFormLayout();
+    this.ensureButtonVisibility();
   }
 
-  adjustFormLayout() {
-    const formContainer = document.querySelector('.form-container') as HTMLElement;
-    if (formContainer) {
-      formContainer.style.maxHeight = `calc(100vh - ${formContainer.offsetTop}px - 20px)`;
+  ensureButtonVisibility() {
+    const btnContainer = document.querySelector('.btn-container') as HTMLElement;
+    const content = document.querySelector('#main-content') as HTMLElement;
+
+    if (btnContainer && content) {
+      const contentRect = content.getBoundingClientRect();
+      const btnRect = btnContainer.getBoundingClientRect();
+
+      // Check if the button is out of view
+      if (btnRect.bottom > contentRect.bottom) {
+        this.renderer.setStyle(content, 'paddingBottom', `${btnRect.height + 20}px`);
+      } else {
+        this.renderer.setStyle(content, 'paddingBottom', `20px`);
+      }
     }
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
+  onResize(event: Event) {
     this.isMobile = window.innerWidth < 768;
-    this.adjustFormLayout();
   }
 
   ngOnInit() {
