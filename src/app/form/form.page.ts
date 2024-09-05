@@ -20,41 +20,41 @@ export class FormPage implements AfterViewInit {
     private modalController: ModalController,
     private renderer: Renderer2
   ) {
+    // Initialize the form with validation rules
     this.form = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^05\d{8}$/)]],
       email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
       jobType: ['', Validators.required],
-      cv: [null, Validators.required],
-      additionalFiles: [null],
-      terms: [false, Validators.requiredTrue]
+      cv: [null, Validators.required],  // CV is required
+      additionalFiles: [null],  // Additional files are optional
+      terms: [false, Validators.requiredTrue]  // Terms must be accepted
     });
   }
 
+  // Opens the Terms of Service modal
   async openTermsModal(event: Event) {
-    event.preventDefault();  // Prevents the link from navigating
+    event.preventDefault();
     const modal = await this.modalController.create({
       component: TermsOfServiceModalComponent
     });
     return await modal.present();
   }
 
+  // Handles file input changes
   onFileChange(event: Event, field: string) {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
       if (field === 'cv') {
-        this.form.patchValue({
-          cv: input.files[0]
-        });
+        this.form.patchValue({ cv: input.files[0] });
       } else if (field === 'additionalFiles') {
-        this.form.patchValue({
-          additionalFiles: input.files
-        });
+        this.form.patchValue({ additionalFiles: input.files });
       }
     }
   }
 
+  // Submits the form data
   submitForm() {
     if (this.form.valid) {
       const formData = new FormData();
@@ -83,33 +83,28 @@ export class FormPage implements AfterViewInit {
           alert('يوجد خطأ');
         }
       );
+    } else {
+      alert('يرجى ملء جميع الحقول المطلوبة.');
     }
   }
 
   ngAfterViewInit() {
-    this.ensureButtonVisibility();
+    this.adjustFormLayout();
   }
 
-  ensureButtonVisibility() {
-    const btnContainer = document.querySelector('.btn-container') as HTMLElement;
-    const content = document.querySelector('#main-content') as HTMLElement;
-
-    if (btnContainer && content) {
-      const contentRect = content.getBoundingClientRect();
-      const btnRect = btnContainer.getBoundingClientRect();
-
-      // Check if the button is out of view
-      if (btnRect.bottom > contentRect.bottom) {
-        this.renderer.setStyle(content, 'paddingBottom', `${btnRect.height + 20}px`);
-      } else {
-        this.renderer.setStyle(content, 'paddingBottom', `20px`);
-      }
+  // Adjusts the form layout for better viewing
+  adjustFormLayout() {
+    const formContainer = document.querySelector('.form-container') as HTMLElement;
+    if (formContainer) {
+      formContainer.style.maxHeight = `calc(100vh - ${formContainer.offsetTop}px - 20px)`;
     }
   }
 
+  // Handles window resize events
   @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
+  onResize(event: any) {
     this.isMobile = window.innerWidth < 768;
+    this.adjustFormLayout();
   }
 
   ngOnInit() {

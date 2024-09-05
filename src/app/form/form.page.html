@@ -29,7 +29,7 @@
     <ion-row>
       <ion-col size="12" size-md="8" offset-md="2">
         <div class="form-container">
-          <form [formGroup]="form" class="form-horizontal" role="form">
+          <form [formGroup]="form" (ngSubmit)="submitForm()" class="form-horizontal" role="form">
             <h2 class="text-center">نموذج التسجيل</h2>
 
             <div class="form-group">
