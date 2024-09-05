@@ -14,12 +14,7 @@ export class FormPage implements AfterViewInit {
   form: FormGroup;
   isMobile = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private modalController: ModalController,
-    private renderer: Renderer2
-  ) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private modalController: ModalController, private renderer: Renderer2) {
     this.form = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern(/^[\u0600-\u06FF\s]+$/)]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^05\d{8}$/)]],
@@ -72,8 +67,6 @@ export class FormPage implements AfterViewInit {
         }
       }
 
-      console.log('Submitting Form Data:', formData);
-
       this.http.post(`${environment.apiUrl}/submit`, formData).subscribe(
         (response) => {
           console.log('Form submitted successfully:', response);
@@ -85,9 +78,6 @@ export class FormPage implements AfterViewInit {
           alert('يوجد خطأ');
         }
       );
-    } else {
-      console.log('Form is invalid');
-      alert('يرجى ملء جميع الحقول المطلوبة.');
     }
   }
 
