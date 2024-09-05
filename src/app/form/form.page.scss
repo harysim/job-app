@@ -20,14 +20,14 @@ ion-content {
 
 h2.text-center {
   text-align: center;
-  color: #007bff; /* Blue color */
+  color: blue;
   margin-bottom: 20px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Align labels and inputs to the right */
+  align-items: flex-end;
   margin-bottom: 15px;
 }
 
@@ -39,43 +39,48 @@ label {
 }
 
 .form-control {
-  text-align: right; /* Align text inside inputs to the right */
+  text-align: right;
   font-size: 16px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 100%; /* Ensure input fields take full width */
-  box-sizing: border-box; /* Include padding and border in width */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input[type="file"] {
-  text-align: right; /* Align file input to the right */
-  direction: rtl; /* Ensure file input respects RTL layout */
+  text-align: right;
+  direction: rtl;
 }
 
 .btn-container {
   margin-top: 15px;
   padding: 12px;
-  background-color: #007bff;
-  color: white;
   text-align: center;
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 5px;
 }
 
-button[type="button"] {
+button[type="submit"] {
   background-color: #007bff;
   color: white;
   font-size: 18px;
+  font-weight: bold;
   border: none;
   cursor: pointer;
   padding: 12px;
   width: 100%;
-  transition: background-color 0.3s ease; /* Smooth transition */
-  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  border-radius: 5px;
 }
 
-button[type="button"]:hover {
-  background-color:#007bff; /* Darker blue on hover */
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+button[type="submit"]:disabled {
+  background-color: #d3d3d3; /* Light grey when disabled */
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .text-danger {
@@ -84,7 +89,7 @@ button[type="button"]:hover {
 
 .checkbox label {
   text-align: right;
-  width: 100%; /* Ensure checkbox label takes full width */
+  width: 100%;
 }
 
 /* Media Queries for responsive design */
@@ -116,7 +121,7 @@ button[type="button"]:hover {
     padding: 10px;
   }
 
-  button[type="button"] {
+  button[type="submit"] {
     font-size: 16px;
     padding: 10px;
   }
