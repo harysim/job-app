@@ -7,23 +7,17 @@ body {
   background: linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
   color: white;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  direction: rtl; /* Set the direction to right-to-left */
-  text-align: right; /* Align text to the right */
-  min-height: 100vh; /* Ensure the background covers the entire viewport */
-  margin: 0; /* Remove default margin */
+  direction: rtl;
+  text-align: right;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Prevent scrolling issues */
-}
-
-.Absolute-Center {
-  margin: auto;
-  position: relative; /* Changed to relative for better control */
-  width: 100%; /* Ensure full width for smaller screens */
+  min-height: 100vh; /* Ensure full height */
 }
 
 .Absolute-Center.is-Responsive {
+  width: 100%;
   max-width: 400px;
   padding: 20px;
   background-color: white;
@@ -31,17 +25,24 @@ body {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   color: black;
   box-sizing: border-box;
-  overflow-y: auto; /* Allow vertical scrolling if necessary */
+  text-align: center;
+  margin: auto; /* Center horizontally */
+}
+
+h2.text-center {
+  font-weight: bold;
+  color: blue;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 #admin-login-content {
-  background: linear-gradient(135deg, #e0e0e0, #cfcfcf); /* Subtle gradient */
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px; /* Add padding to prevent content from touching screen edges */
-  box-sizing: border-box; /* Include padding in the element's total width and height */
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 input[type="text"],
@@ -64,17 +65,13 @@ button {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px; /* Add margin to ensure spacing between input fields and button */
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {
   .Absolute-Center.is-Responsive {
     width: 90%;
     padding: 15px;
-    height: 100vh; /* Full height for smaller screens */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   input[type="text"],
