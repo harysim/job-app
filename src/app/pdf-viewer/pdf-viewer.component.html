@@ -8,5 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <embed src="assets/pdf/bank_account.pdf" type="application/pdf" width="100%" height="100%">
+  <pdf-viewer
+    [src]="'assets/pdf/bank_account.pdf'"
+    [render-text]="true"
+    style="display: block; width: 100%; height: 100%;">
+  </pdf-viewer>
 </ion-content>
