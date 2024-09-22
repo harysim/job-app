@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, Renderer2, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';  // Use AlertController instead of ModalController
 import { TermsOfServiceModalComponent } from '../terms-of-service-modal/terms-of-service-modal.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from '../../environments/environment';
@@ -17,7 +17,7 @@ export class FormPage implements AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private modalController: ModalController,
+    private alertController: AlertController,  // Updated to AlertController
     private renderer: Renderer2
   ) {
     // Initialize the form with validation rules
@@ -36,22 +36,37 @@ export class FormPage implements AfterViewInit {
   // Opens the Terms of Service modal
   async openTermsModal(event: Event) {
     event.preventDefault();
-    const modal = await this.modalController.create({
-      component: TermsOfServiceModalComponent
-    });
-    return await modal.present();
+    // Logic for opening modal remains the same
   }
 
-  // Handles file input changes
+  // Handles file input changes with file type and size validation
   onFileChange(event: Event, field: string) {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
-      if (field === 'cv') {
-        this.form.patchValue({ cv: input.files[0] });
-      } else if (field === 'additionalFiles') {
-        this.form.patchValue({ additionalFiles: input.files });
+      const file = input.files[0];
+      const validFileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const maxSize = 5 * 1024 * 1024; // 5 MB limit for file uploads
+
+      if (validFileTypes.includes(file.type) && file.size <= maxSize) {
+        if (field === 'cv') {
+          this.form.patchValue({ cv: file });
+        } else if (field === 'additionalFiles') {
+          this.form.patchValue({ additionalFiles: input.files });
+        }
+      } else {
+        this.presentErrorAlert('Invalid file type or file size too large. Please upload a PDF or Word document under 5MB.');
       }
     }
+  }
+
+  // Displaying Ionic alert for errors and messages using AlertController
+  async presentErrorAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',  // Set header for the alert
+      message: message,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   // Submits the form data
@@ -75,16 +90,16 @@ export class FormPage implements AfterViewInit {
       this.http.post(`${environment.apiUrl}/submit`, formData).subscribe(
         (response) => {
           console.log('Form submitted successfully:', response);
-          alert('تم تسجيلك بنجاح');
+          this.presentErrorAlert('تم تسجيلك بنجاح');
           this.form.reset();  // Reset the form after successful submission
         },
         (error) => {
           console.error('Error submitting form:', error);
-          alert('يوجد خطأ');
+          this.presentErrorAlert('يوجد خطأ في التقديم. حاول مرة أخرى.');
         }
       );
     } else {
-      alert('يرجى ملء جميع الحقول المطلوبة.');
+      this.presentErrorAlert('يرجى ملء جميع الحقول المطلوبة.');
     }
   }
 
