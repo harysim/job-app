@@ -54,15 +54,15 @@ export class FormPage implements AfterViewInit {
           this.form.patchValue({ additionalFiles: input.files });
         }
       } else {
-        this.presentErrorAlert('Invalid file type or file size too large. Please upload a PDF or Word document under 5MB.');
+        this.presentAlert('Error', 'Invalid file type or file size too large. Please upload a PDF or Word document under 5MB.');
       }
     }
   }
 
-  // Displaying Ionic alert for errors and messages using AlertController
-  async presentErrorAlert(message: string) {
+  // Displaying Ionic alert for both success and error messages using AlertController
+  async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
-      header: 'Error',  // Set header for the alert
+      header: header,  // Set dynamic header
       message: message,
       buttons: ['OK']
     });
@@ -90,16 +90,16 @@ export class FormPage implements AfterViewInit {
       this.http.post(`${environment.apiUrl}/submit`, formData).subscribe(
         (response) => {
           console.log('Form submitted successfully:', response);
-          this.presentErrorAlert('تم تسجيلك بنجاح');
+          this.presentAlert('Success', 'تم تسجيلك بنجاح');  // Show success message
           this.form.reset();  // Reset the form after successful submission
         },
         (error) => {
           console.error('Error submitting form:', error);
-          this.presentErrorAlert('يوجد خطأ في التقديم. حاول مرة أخرى.');
+          this.presentAlert('Error', 'يوجد خطأ في التقديم. حاول مرة أخرى.');  // Show error message
         }
       );
     } else {
-      this.presentErrorAlert('يرجى ملء جميع الحقول المطلوبة.');
+      this.presentAlert('Error', 'يرجى ملء جميع الحقول المطلوبة.');
     }
   }
 
