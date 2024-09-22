@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, Renderer2, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';  // Use AlertController instead of ModalController
-import { TermsOfServiceModalComponent } from '../terms-of-service-modal/terms-of-service-modal.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from '../../environments/environment';
 
@@ -48,8 +47,14 @@ export class FormPage implements AfterViewInit {
       const maxSize = 5 * 1024 * 1024; // 5 MB limit for file uploads
 
       if (validFileTypes.includes(file.type) && file.size <= maxSize) {
+        const fullName = this.form.get('firstName')?.value;  // Get the user's full name from the form
+        const newFileName = `${fullName}-${file.name}`;  // Append the full name to the file name
+
+        // Create a new File object with the updated name
+        const renamedFile = new File([file], newFileName, { type: file.type });
+
         if (field === 'cv') {
-          this.form.patchValue({ cv: file });
+          this.form.patchValue({ cv: renamedFile });
         } else if (field === 'additionalFiles') {
           this.form.patchValue({ additionalFiles: input.files });
         }

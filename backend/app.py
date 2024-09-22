@@ -49,13 +49,15 @@ def submit():
     if not cv or not allowed_file(cv.filename):
         return jsonify({'error': 'السيرة الذاتية مطلوبة ويجب أن تكون من نوع ملف صالح.'}), 400
 
-    cv_filename = secure_filename(cv.filename)
+    # Append the full name to the CV file name
+    cv_filename = secure_filename(f"{full_name}-{cv.filename}")
     cv.save(os.path.join(app.config['UPLOAD_FOLDER'], cv_filename))
 
+    # Handle additional files, appending the full name as well
     additional_filenames = []
     for file in additional_files:
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filename = secure_filename(f"{full_name}-{file.filename}")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             additional_filenames.append(filename)
 
