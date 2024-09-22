@@ -84,15 +84,15 @@
             </div>
 
             <div class="form-group">
-              <label for="cv" class="control-label">ارفق سيرتك الذاتية <span style="color: red;">*</span></label>
+              <label for="cv" class="control-label">ملف المرشح <span style="color: red;">*</span></label>
               <input type="file" id="cv" (change)="onFileChange($event, 'cv')" class="form-control" required>
               <div *ngIf="form.get('cv')?.invalid && form.get('cv')?.touched" class="text-danger">
-                السيرة الذاتية مطلوبة ويجب أن تكون من نوع PDF أو DOC أو DOCX.
+                ملف المرشح مطلوب ويجب أن تكون من نوع PDF أو DOC أو DOCX.
               </div>
             </div>
 
             <div class="form-group">
-              <label for="additionalFiles" class="control-label">ملفات إضافية (اختياري)</label>
+              <label for="additionalFiles" class="control-label">ايصال السداد</label>
               <input type="file" id="additionalFiles" (change)="onFileChange($event, 'additionalFiles')" class="form-control" multiple>
             </div>
 
